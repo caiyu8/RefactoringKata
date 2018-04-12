@@ -3,28 +3,36 @@ using System.Collections.Generic;
 using WalletKata.Exceptions;
 using WalletKata.Users;
 using WalletKata.Wallets;
+using Moq;
 
 namespace WalletKata.Test1
 {
     [TestClass]
     public class WalletServiceTest
     {
-        WalletService walletService = new FakeWalletService();
-
         static readonly User unLoggedUser = null;
         static readonly User userA = new User();
         static readonly User loggedUser = new User();
 
+        Mock<IWalletDAO> walletDAOMock = new Mock<IWalletDAO>();
+        WalletService walletService;
+
+        [TestInitialize]
+        public void SetUp()
+        {
+            walletService = new WalletService(walletDAOMock.Object);
+        }
+
         [TestMethod()]
         public void ShouldThrowUserNotLoggedInExceptionIfUserNotLoggedIn()
         {
-            //loggedUser = unLoggedUser;
             Assert.ThrowsException<UserNotLoggedInException>(() => walletService.GetWalletsByUser(userA, unLoggedUser));
         }
 
         [TestMethod()]
         public void ShouldNotReturnWalletIfLoggedUserIsNotFriend()
         {
+            
             List<Wallet> walletList = walletService.GetWalletsByUser(userA, loggedUser);
 
             Assert.AreEqual(0, walletList.Count);
@@ -36,22 +44,13 @@ namespace WalletKata.Test1
             userA.AddFriend(loggedUser);
             userA.AddWallet(new Wallet());
 
+            walletDAOMock.Setup(x => x.FindWalletsByUser(userA)).Returns(userA.GetWallets());
+
             List<Wallet> walletList = walletService.GetWalletsByUser(userA, loggedUser);
 
             CollectionAssert.AreEqual(walletList, userA.GetWallets());
-        }
 
-        class FakeWalletService : WalletService
-        {
-            //protected override User GetLoggedUser()
-            //{
-            //    return loggedUser;
-            //}
-
-            protected override List<Wallet> FindWalletByUser(User user)
-            {
-                return user.GetWallets();
-            }
+            walletDAOMock.VerifyAll();
         }
     }
 }
