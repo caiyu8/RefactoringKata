@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using WalletKata.Users;
 using WalletKata.Exceptions;
+using System;
 
 namespace WalletKata.Wallets
 {
@@ -8,35 +9,38 @@ namespace WalletKata.Wallets
     {
         public List<Wallet> GetWalletsByUser(User user)
         {
-            List<Wallet> walletList = new List<Wallet>();
             User loggedUser = GetLoggedUser();
-            bool isFriend = false;
+            CheckUser(loggedUser); // Verify if user is logged in before continuing
 
-            if (loggedUser != null)
-            {
-                foreach (User friend in user.GetFriends())
-                {
-                    if (friend.Equals(loggedUser))
-                    {
-                        isFriend = true;
-                        break;
-                    }
-                }
+            List<Wallet> walletList = new List<Wallet>();
 
-                if (isFriend)
-                {
-                    walletList = FindWalletByUser(user);
-                }
+            //bool isFriend = false;
 
-                return walletList;
-            }
-            else
+            //foreach (User friend in user.GetFriends())
+            //{
+            //    if (friend.Equals(loggedUser))
+            //    {
+            //        isFriend = true;
+            //        break;
+            //    }
+            //}
+
+            //if (isFriend)
+            //{
+            //    walletList = new List<Wallet>();
+            //}
+
+            return user.HasFriend(loggedUser) ? FindWalletByUser(user) : new List<Wallet>();
+        }
+
+        private void CheckUser(User loggedUser)
+        {
+            if (null == loggedUser)
             {
                 throw new UserNotLoggedInException();
             }
         }
 
-        
         protected virtual List<Wallet> FindWalletByUser(User user)
         {
             return WalletDAO.FindWalletsByUser(user);

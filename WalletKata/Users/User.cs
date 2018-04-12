@@ -19,6 +19,11 @@ namespace WalletKata.Users
             friends.Add(friend);
         }
 
+        public bool HasFriend(User friend)
+        {
+            return friends.Contains(friend);
+        }
+
         public void AddWallet(Wallet wallet)
         {
             wallets.Add(wallet);
