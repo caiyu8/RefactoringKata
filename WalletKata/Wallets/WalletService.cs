@@ -33,7 +33,17 @@ namespace WalletKata.Wallets
             else
             {
                 throw new UserNotLoggedInException();
-            }      
-        }         
+            }
+        }
+
+        public virtual List<Wallet> FindWalletByUser(User user)
+        {
+            return WalletDAO.FindWalletsByUser(user);
+        }
+
+        public virtual User GetLoggedUser()
+        {
+            return UserSession.GetInstance().GetLoggedUser();
+        }
     }
 }
