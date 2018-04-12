@@ -7,33 +7,17 @@ namespace WalletKata.Wallets
 {
     public class WalletService
     {
-        public List<Wallet> GetWalletsByUser(User user)
+        public List<Wallet> GetWalletsByUser(User user, User loggedUser)
         {
-            User loggedUser = GetLoggedUser();
-            CheckUser(loggedUser); // Verify if user is logged in before continuing
+            //User loggedUser = GetLoggedUser();
+            ValidateLogIn(loggedUser); // Verify if user is logged in before continuing
 
             List<Wallet> walletList = new List<Wallet>();
 
-            //bool isFriend = false;
-
-            //foreach (User friend in user.GetFriends())
-            //{
-            //    if (friend.Equals(loggedUser))
-            //    {
-            //        isFriend = true;
-            //        break;
-            //    }
-            //}
-
-            //if (isFriend)
-            //{
-            //    walletList = new List<Wallet>();
-            //}
-
-            return user.HasFriend(loggedUser) ? FindWalletByUser(user) : new List<Wallet>();
+           return user.HasFriend(loggedUser) ? FindWalletByUser(user) : new List<Wallet>();
         }
 
-        private void CheckUser(User loggedUser)
+        private void ValidateLogIn(User loggedUser)
         {
             if (null == loggedUser)
             {
