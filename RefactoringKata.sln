@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2015
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WalletKata", "WalletKata\WalletKata.csproj", "{25948D21-7879-4F2F-B6BB-F4238CA6CDAE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WalletKata.Test", "WalletKata.Test\WalletKata.Test.csproj", "{8C26AF9D-5F84-4B8B-A816-29C53F764619}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WalletKata.Test1", "WalletKata.Test1\WalletKata.Test1.csproj", "{FFF58073-973C-4D8A-97FF-4E5F67C7EE69}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,8 +23,15 @@ Global
 		{8C26AF9D-5F84-4B8B-A816-29C53F764619}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C26AF9D-5F84-4B8B-A816-29C53F764619}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C26AF9D-5F84-4B8B-A816-29C53F764619}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFF58073-973C-4D8A-97FF-4E5F67C7EE69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFF58073-973C-4D8A-97FF-4E5F67C7EE69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFF58073-973C-4D8A-97FF-4E5F67C7EE69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFF58073-973C-4D8A-97FF-4E5F67C7EE69}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B957374D-2CE0-4764-974B-618B987586BB}
 	EndGlobalSection
 EndGlobal
