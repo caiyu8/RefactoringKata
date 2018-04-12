@@ -9,7 +9,7 @@ namespace WalletKata.Wallets
         public List<Wallet> GetWalletsByUser(User user)
         {
             List<Wallet> walletList = new List<Wallet>();
-            User loggedUser = UserSession.GetInstance().GetLoggedUser();
+            User loggedUser = GetLoggedUser();
             bool isFriend = false;
 
             if (loggedUser != null)
@@ -25,7 +25,7 @@ namespace WalletKata.Wallets
 
                 if (isFriend)
                 {
-                    walletList = WalletDAO.FindWalletsByUser(user);
+                    walletList = FindWalletByUser(user);
                 }
 
                 return walletList;
@@ -36,12 +36,17 @@ namespace WalletKata.Wallets
             }
         }
 
-        public virtual List<Wallet> FindWalletByUser(User user)
+        
+        protected virtual List<Wallet> FindWalletByUser(User user)
         {
             return WalletDAO.FindWalletsByUser(user);
         }
 
-        public virtual User GetLoggedUser()
+        /// <summary>
+        /// Extract this method in order to make code testable
+        /// </summary>
+        /// <returns></returns>
+        protected virtual User GetLoggedUser()
         {
             return UserSession.GetInstance().GetLoggedUser();
         }
