@@ -1,5 +1,5 @@
 # Refactoring Kata
-
+This is an interview exercise. The original specification and the source code before the refactoring is [here.](https://github.com/Mangopay/RefactoringKata) 
 ## Goal
 The goal of this kata is to find the code smells of this legacy code and fix them in the safest way.
 
@@ -7,7 +7,7 @@ If you are confident with unit testing, we highly recommend to write some tests 
 This legacy code is not so testable, it's highly probable that you need to make some changes to the code before you can write your test. 
 But try to reduce to the maximum the changes to make the code testable.
 
-* Fork the repository from [Mangopay/RefactoringKata](https://github.com/Mangopay/RefactoringKata)
+* Fork the repository from [Mangopay/RefactoringKata]()
 
 * Commit at each step of your refactoring process.
 
